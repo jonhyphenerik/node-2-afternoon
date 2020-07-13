@@ -1,9 +1,7 @@
 // message data
-let messages = [
-    {id: 0, time: '6:30', text: 'yo'},
-];
+let messages = [];
 
-let id = 1; 
+let id = 0; 
 
 module.exports = {
     getMessages: (req, res) => {res.status(200).send(messages)},
@@ -13,12 +11,13 @@ module.exports = {
             text: req.body.text,
             time: req.body.time
         }
-        id++;
         messages.push(message);
+        id++;
         res.status(200).send(messages)
     },
     editMessage: (req, res) => {
         let index = messages.findIndex(e => e.id === +req.params.id);
+        console.log(`index: ${index}, message: ${messages}, id: ${req.params.id}`);
         messages[index].text = req.body.text;
 
         res.status(200).send(messages);

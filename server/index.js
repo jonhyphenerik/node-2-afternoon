@@ -4,6 +4,7 @@ const ctrl = require('./controller')
 const app = express();
 
 app.use(express.json());
+app.use(express.static(__dirname + '/../public/build'));
 
 app.get('/api/messages', ctrl.getMessages);
 app.post('/api/messages', ctrl.sendMessage);
